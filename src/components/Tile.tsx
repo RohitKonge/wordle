@@ -22,14 +22,14 @@ const Tile: React.FC<TileProps> = ({ letter, status, position, isRevealing = fal
     empty: 'border-gray-200 dark:border-gray-600 bg-white/80 dark:bg-gray-800/80 text-gray-900 dark:text-gray-100 hover:bg-white dark:hover:bg-gray-800',
     filled: 'border-gray-300 dark:border-gray-500 bg-white/90 dark:bg-gray-800/90 text-gray-900 dark:text-gray-100',
     correct: settings.colorBlindMode 
-      ? 'border-orange-500 bg-gradient-to-br from-orange-500 to-orange-600 text-white'
-      : 'border-green-500 bg-gradient-to-br from-green-500 to-green-600 text-white',
+      ? 'border-orange-400 bg-orange-400 text-white'
+      : 'border-emerald-400 bg-emerald-400 text-white',
     present: settings.colorBlindMode
-      ? 'border-blue-500 bg-gradient-to-br from-blue-500 to-blue-600 text-white'
-      : 'border-yellow-500 bg-gradient-to-br from-yellow-500 to-yellow-600 text-white',
+      ? 'border-blue-400 bg-blue-400 text-white'
+      : 'border-amber-400 bg-amber-400 text-white',
     absent: settings.colorBlindMode
-      ? 'border-gray-600 bg-gradient-to-br from-gray-600 to-gray-700 text-white'
-      : 'border-gray-400 bg-gradient-to-br from-gray-400 to-gray-500 text-white',
+      ? 'border-gray-500 bg-gray-500 text-white'
+      : 'border-gray-300 bg-gray-300 text-white',
   };
 
   const animationDelay = isRevealing ? `${position * 150}ms` : '0ms';

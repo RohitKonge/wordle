@@ -17,15 +17,15 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
     
     if (settings.colorBlindMode) {
       switch (status) {
-        case 'correct': return `${baseClasses} bg-gradient-to-br from-orange-500 to-orange-600 text-white`;
-        case 'present': return `${baseClasses} bg-gradient-to-br from-blue-500 to-blue-600 text-white`;
-        case 'absent': return `${baseClasses} bg-gradient-to-br from-gray-600 to-gray-700 text-white`;
+        case 'correct': return `${baseClasses} bg-orange-400 text-white`;
+        case 'present': return `${baseClasses} bg-blue-400 text-white`;
+        case 'absent': return `${baseClasses} bg-gray-500 text-white`;
       }
     } else {
       switch (status) {
-        case 'correct': return `${baseClasses} bg-gradient-to-br from-green-500 to-green-600 text-white`;
-        case 'present': return `${baseClasses} bg-gradient-to-br from-yellow-500 to-yellow-600 text-white`;
-        case 'absent': return `${baseClasses} bg-gradient-to-br from-gray-400 to-gray-500 text-white`;
+        case 'correct': return `${baseClasses} bg-emerald-400 text-white`;
+        case 'present': return `${baseClasses} bg-amber-400 text-white`;
+        case 'absent': return `${baseClasses} bg-gray-300 text-white`;
       }
     }
   };
