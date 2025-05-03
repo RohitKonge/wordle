@@ -7,7 +7,7 @@ const Toast: React.FC = () => {
   if (!toastMessage) return null;
 
   return (
-    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white py-2 px-4 rounded shadow-lg animate-fade-in">
+    <div className="fixed top-20 left-1/2 transform -translate-x-1/2 bg-gray-800 dark:bg-gray-700 text-white py-2 px-4 rounded shadow-lg animate-fade-in">
       {toastMessage}
     </div>
   );

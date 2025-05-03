@@ -24,7 +24,7 @@ const Keyboard: React.FC = () => {
       : "w-8 sm:w-10";
     
     const statusClasses = {
-      empty: "bg-gray-200 hover:bg-gray-300 text-gray-800",
+      empty: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
       correct: "bg-green-500 text-white",
       present: "bg-yellow-500 text-white",
       absent: "bg-gray-500 text-white"

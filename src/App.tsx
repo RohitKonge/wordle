@@ -9,7 +9,7 @@ import GameOver from './components/GameOver';
 function App() {
   return (
     <GameProvider>
-      <div className="flex flex-col items-center min-h-screen bg-gray-50">
+      <div className="flex flex-col items-center min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
         <Header />
         <main className="flex flex-col items-center justify-center flex-1 w-full max-w-lg px-4 py-8">
           <Board />
