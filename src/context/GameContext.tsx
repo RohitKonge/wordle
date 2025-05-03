@@ -4,6 +4,15 @@ import { getRandomWord, isValidWord } from '../utils/words';
 type GameStatus = 'playing' | 'won' | 'lost';
 export type TileStatus = 'empty' | 'filled' | 'correct' | 'present' | 'absent';
 
+interface GameStats {
+  gamesPlayed: number;
+  gamesWon: number;
+  currentStreak: number;
+  maxStreak: number;
+  guessDistribution: number[];
+  bestTry: number | null;
+}
+
 interface GameSettings {
   numberOfLetters: number;
   hardMode: boolean;
@@ -21,6 +30,7 @@ interface GameContextType {
   keyboardStatus: Record<string, TileStatus>;
   toastMessage: string;
   settings: GameSettings;
+  stats: GameStats;
   updateSetting: <K extends keyof GameSettings>(key: K, value: GameSettings[K]) => void;
   addLetter: (letter: string) => void;
   removeLetter: () => void;
@@ -37,6 +47,15 @@ const defaultSettings: GameSettings = {
   colorBlindMode: false,
   letterHints: false,
   swapButtons: false
+};
+
+const defaultStats: GameStats = {
+  gamesPlayed: 0,
+  gamesWon: 0,
+  currentStreak: 0,
+  maxStreak: 0,
+  guessDistribution: [0, 0, 0, 0, 0, 0],
+  bestTry: null
 };
 
 const GameContext = createContext<GameContextType | undefined>(undefined);
@@ -57,6 +76,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [keyboardStatus, setKeyboardStatus] = useState<Record<string, TileStatus>>({});
   const [toastMessage, setToastMessage] = useState<string>('');
   const [settings, setSettings] = useState<GameSettings>(defaultSettings);
+  const [stats, setStats] = useState<GameStats>(() => {
+    const savedStats = localStorage.getItem('wordleStats');
+    return savedStats ? JSON.parse(savedStats) : defaultStats;
+  });
 
   const updateSetting = <K extends keyof GameSettings>(key: K, value: GameSettings[K]) => {
     setSettings(prev => ({ ...prev, [key]: value }));
@@ -116,6 +139,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setKeyboardStatus(newKeyboardStatus);
   }, [guesses]);
 
+  useEffect(() => {
+    localStorage.setItem('wordleStats', JSON.stringify(stats));
+  }, [stats]);
+
   const addLetter = (letter: string) => {
     if (currentGuess.length < settings.numberOfLetters) {
       setCurrentGuess(prev => prev + letter);
@@ -156,15 +183,38 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
     if (currentGuess === targetWord) {
       setGameStatus('won');
+      updateStats(true, newGuesses.length);
       showToast('Correct! Well done!');
       return;
     }
 
     if (newGuesses.length >= 6) {
       setGameStatus('lost');
+      updateStats(false, 6);
       showToast(`The word was ${targetWord}`);
       return;
     }
+  };
+
+  const updateStats = (won: boolean, numGuesses: number) => {
+    setStats(prev => {
+      const newStats = { ...prev };
+      newStats.gamesPlayed++;
+      
+      if (won) {
+        newStats.gamesWon++;
+        newStats.currentStreak++;
+        newStats.maxStreak = Math.max(newStats.maxStreak, newStats.currentStreak);
+        newStats.guessDistribution[numGuesses - 1]++;
+        if (!newStats.bestTry || numGuesses < newStats.bestTry) {
+          newStats.bestTry = numGuesses;
+        }
+      } else {
+        newStats.currentStreak = 0;
+      }
+      
+      return newStats;
+    });
   };
 
   const startNewGame = () => {
@@ -184,6 +234,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const giveUp = () => {
     if (gameStatus === 'playing') {
       setGameStatus('lost');
+      updateStats(false, 6);
       showToast(`The word was ${targetWord}`);
     }
   };
@@ -198,6 +249,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         keyboardStatus,
         toastMessage,
         settings,
+        stats,
         updateSetting,
         addLetter,
         removeLetter,

@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
-import { HelpCircle, Settings as SettingsIcon, Flag } from 'lucide-react';
+import { HelpCircle, Settings as SettingsIcon, Flag, BarChart3 } from 'lucide-react';
 import { useGame } from '../context/GameContext';
 import HowToPlay from './HowToPlay';
 import Settings from './Settings';
+import Statistics from './Statistics';
 
 const Header: React.FC = () => {
   const { startNewGame, giveUp, gameStatus } = useGame();
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [showStats, setShowStats] = useState(false);
 
   return (
     <>
@@ -33,6 +35,13 @@ const Header: React.FC = () => {
             WORDLE
           </h1>
           <div className="flex gap-2">
+            <button
+              onClick={() => setShowStats(true)}
+              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
+              aria-label="Statistics"
+            >
+              <BarChart3 size={24} />
+            </button>
             {gameStatus === 'playing' && (
               <button
                 onClick={giveUp}
@@ -60,6 +69,7 @@ const Header: React.FC = () => {
       </header>
       <HowToPlay isOpen={showHowToPlay} onClose={() => setShowHowToPlay(false)} />
       <Settings isOpen={showSettings} onClose={() => setShowSettings(false)} />
+      <Statistics isOpen={showStats} onClose={() => setShowStats(false)} />
     </>
   );
 };
