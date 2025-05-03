@@ -25,11 +25,33 @@ const WORDS_5 = [
   'PRAWN', 'QUIRK', 'REGAL', 'SWORD', 'TOWEL', 'URBAN', 'VAULT', 'WITTY', 'YUMMY', 'ZONED'
 ];
 
+const WORDS_6 = [
+  'ANIMAL', 'BRIGHT', 'CIRCLE', 'DANGER', 'FLIGHT', 'GROWTH', 'HAMMER', 'IGNORE', 'JUNGLE', 'KITTEN',
+  'LADDER', 'MAGNET', 'NATURE', 'ORANGE', 'PACKET', 'QUENCH', 'ROCKET', 'SUMMIT', 'TALENT', 'UNIQUE',
+  'VISION', 'WONDER', 'YELLOW', 'BOTHER', 'CREATE', 'DOUBLE', 'EFFORT', 'FABRIC', 'GADGET', 'HUNTER',
+  'IMPACT', 'JUMBLE', 'KINDLY', 'LOCKET', 'MODERN', 'NUMBER', 'ONLINE', 'PEOPLE', 'QUIVER', 'REMARK',
+  'SENDER', 'TARGET', 'UPHILL', 'VELVET', 'WRENCH', 'XYLOID', 'YEARLY', 'ZEPHYR', 'BACKUP', 'CANYON',
+  'DESIGN', 'EASIER', 'FRIEND', 'GROWTH', 'HEIGHT', 'INCOME', 'JIGSAW', 'KNEELS', 'LAPTOP', 'MARKET',
+  'NATION', 'OPTION', 'PARADE', 'QUARTZ', 'RESULT', 'SILENT', 'THIRST', 'UPDATE', 'VISUAL', 'WINTER',
+  'ACCENT', 'BELIEF', 'CUSTOM', 'DIVIDE', 'EXPORT', 'FORGED', 'GALAXY', 'HEIGHT', 'INSECT', 'JACKET',
+  'KIDNEY', 'LINGER', 'MENTOR', 'NOTICE', 'OFFICE', 'PARENT', 'REWIND', 'SUFFIX', 'TUNNEL', 'UNFOLD',
+  'VACANT', 'WANDER', 'XENIAL', 'YONDER', 'ZIPPER', 'ACCORD', 'BREEZE', 'CIRCLE', 'DARING', 'ELAPSE'
+];
+
 /**
  * Gets the word list based on the number of letters
  */
 export const getWordList = (numberOfLetters: number): string[] => {
-  return numberOfLetters === 4 ? WORDS_4 : WORDS_5;
+  switch (numberOfLetters) {
+    case 4:
+      return WORDS_4;
+    case 5:
+      return WORDS_5;
+    case 6:
+      return WORDS_6;
+    default:
+      return WORDS_5; // Default to 5-letter words
+  }
 };
 
 /**
