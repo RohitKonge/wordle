@@ -15,23 +15,7 @@ const Header: React.FC = () => {
     <>
       <header className="w-full border-b border-gray-200/10 py-4 px-4 bg-gradient shadow-md relative z-10">
         <div className="flex items-center justify-between max-w-lg mx-auto">
-          <div className="flex gap-2">
-            <button 
-              onClick={() => setShowSettings(true)}
-              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
-              aria-label="Settings"
-            >
-              <SettingsIcon size={24} />
-            </button>
-            <button
-              onClick={() => setShowHowToPlay(true)}
-              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
-              aria-label="How to Play"
-            >
-              <HelpCircle size={24} />
-            </button>
-          </div>
-          <h1 className="text-3xl font-bold tracking-wide text-center text-white animate-pop-in">
+          <h1 className="text-3xl font-bold tracking-wide text-white animate-pop-in">
             WORDLE
           </h1>
           <div className="flex gap-2">
@@ -54,6 +38,20 @@ const Header: React.FC = () => {
                 </span>
               </button>
             )}
+            <button
+              onClick={() => setShowHowToPlay(true)}
+              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
+              aria-label="How to Play"
+            >
+              <HelpCircle size={24} />
+            </button>
+            <button 
+              onClick={() => setShowSettings(true)}
+              className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
+              aria-label="Settings"
+            >
+              <SettingsIcon size={24} />
+            </button>
             <button 
               onClick={startNewGame}
               className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
