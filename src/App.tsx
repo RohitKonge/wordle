@@ -129,6 +129,93 @@ function App() {
               </div>
             </div>
           </div>
+
+          {/* FAQ Section */}
+          <div className="w-full max-w-2xl mt-12 mb-8 px-4">
+            <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8">
+              Frequently Asked Questions
+            </h2>
+
+            <div className="space-y-8">
+              {/* What are the rules of the Wordly game? */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  What are the rules of the Wordly game?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-4">
+                  The main goal of the game is to guess the hidden word in 6 tries. In each line, you need to enter any word from 4 to 11 letters to find out what letters are in the target word. Depending on which word you entered, the letters will be highlighted in three colors.
+                </p>
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-gray-900 dark:text-white mb-2">Color marking:</h4>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-gray-300 dark:bg-gray-700"></div>
+                    <p className="text-gray-700 dark:text-gray-300">The letter isn't in the target word at all.</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-yellow-500"></div>
+                    <p className="text-gray-700 dark:text-gray-300">The letter is in the word but in the wrong spot.</p>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="w-4 h-4 rounded bg-green-500"></div>
+                    <p className="text-gray-700 dark:text-gray-300">The letter is in the word and in the correct spot.</p>
+                  </div>
+                </div>
+                <p className="text-gray-700 dark:text-gray-300 mt-4">
+                  To win you need to completely guess the hidden word (all letters are <span className="text-green-500">green</span>).
+                </p>
+              </div>
+
+              {/* What is the best word to start the game? */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  What is the best word to start the game?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  At the beginning of the game, try to use a word without repeating letters and with as many vowels as possible, such as the word "RADIO". However, mathematician Grant Sanderson found that the best starting word is "CRANE" or "SLOTH", which includes frequently used letters.
+                </p>
+              </div>
+
+              {/* What dictionary are you using? */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  What dictionary are you using?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  In American English, we use a dictionary from the Letterpress word list that includes a list of ~275,000 words. This dictionary is constantly updated with new words based on real feedback from people.
+                </p>
+              </div>
+
+              {/* Why did I get a "Word not found" message? */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  Why did I get a "Word not found" message?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  This alert message means that the given word was not found in our word bank. Try another word, or if you think the word is correct, let us know.
+                </p>
+              </div>
+
+              {/* The hidden word was incorrect */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  The hidden word was incorrect. Can you fix this?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If you think that the hidden word is wrong or incorrect, let us know. We will definitely fix this as soon as possible.
+                </p>
+              </div>
+
+              {/* How to change the entered letter? */}
+              <div>
+                <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">
+                  How to change the entered letter?
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300">
+                  If you want to change an incorrectly entered letter, just press the "Backspace" button, but remember that you cannot change the entered word.
+                </p>
+              </div>
+            </div>
+          </div>
         </main>
       </div>
     </GameProvider>
