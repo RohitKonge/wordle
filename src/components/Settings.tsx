@@ -12,7 +12,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   
   if (!isOpen) return null;
 
-  const letterOptions = [4, 5, 6];
+  const letterOptions = [4, 5, 6, 7];
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
