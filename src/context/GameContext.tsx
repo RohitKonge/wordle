@@ -27,6 +27,7 @@ interface GameContextType {
   submitGuess: () => void;
   startNewGame: () => void;
   showToast: (message: string) => void;
+  giveUp: () => void;
 }
 
 const defaultSettings: GameSettings = {
@@ -180,6 +181,13 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setTimeout(() => setToastMessage(''), 3000);
   };
 
+  const giveUp = () => {
+    if (gameStatus === 'playing') {
+      setGameStatus('lost');
+      showToast(`The word was ${targetWord}`);
+    }
+  };
+
   return (
     <GameContext.Provider
       value={{
@@ -195,7 +203,8 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
         removeLetter,
         submitGuess,
         startNewGame,
-        showToast
+        showToast,
+        giveUp
       }}
     >
       {children}

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Menu, HelpCircle, Settings as SettingsIcon } from 'lucide-react';
+import { HelpCircle, Settings as SettingsIcon, Flag } from 'lucide-react';
 import { useGame } from '../context/GameContext';
 import HowToPlay from './HowToPlay';
 import Settings from './Settings';
 
 const Header: React.FC = () => {
-  const { startNewGame } = useGame();
+  const { startNewGame, giveUp, gameStatus } = useGame();
   const [showHowToPlay, setShowHowToPlay] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
 
@@ -31,6 +31,18 @@ const Header: React.FC = () => {
             >
               <HelpCircle size={24} />
             </button>
+            {gameStatus === 'playing' && (
+              <button
+                onClick={giveUp}
+                className="p-2 rounded-full hover:bg-white/10 text-white transition-colors group relative"
+                aria-label="Give Up"
+              >
+                <Flag size={24} className="transform transition-transform group-hover:scale-110" />
+                <span className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 text-xs bg-black/75 text-white px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">
+                  Give Up
+                </span>
+              </button>
+            )}
             <button 
               onClick={startNewGame}
               className="p-2 rounded-full hover:bg-white/10 text-white transition-colors"
