@@ -66,6 +66,10 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
+    // Reset to 5 letters if currently using 8 or more letters
+    if (settings.numberOfLetters > 7) {
+      updateSetting('numberOfLetters', 5);
+    }
     startNewGame();
   }, [settings.numberOfLetters]);
 

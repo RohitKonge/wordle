@@ -12,7 +12,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
   
   if (!isOpen) return null;
 
-  const letterOptions = [4, 5, 6, 7, 8, 9, 10, 11];
+  const letterOptions = [4, 5, 6, 7];
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -70,7 +70,7 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
           <div className="flex items-center justify-between">
             <div>
               <h3 className="font-semibold">Daily Mode</h3>
-              <p className="text-gray-600 text-sm">Guess a chain of words from 4 to 11 letters every 24 hours</p>
+              <p className="text-gray-600 text-sm">Guess a chain of words from 4 to 7 letters every 24 hours</p>
               <p className="text-gray-600 text-sm">Next word update in 09:57:50</p>
             </div>
             <button
