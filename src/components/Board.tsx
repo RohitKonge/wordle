@@ -5,7 +5,7 @@ import Tile from './Tile';
 const Board: React.FC = () => {
   const { guesses, currentGuess, targetWord } = useGame();
   const rows = 6;
-  const cols = 5;
+  const cols = targetWord.length;
 
   // Create a 2D array representing the board
   const board = Array(rows).fill(null).map((_, rowIdx) => {
@@ -38,7 +38,7 @@ const Board: React.FC = () => {
   return (
     <div className="mb-8 grid grid-rows-6 gap-1.5">
       {board.map((row, rowIdx) => (
-        <div key={rowIdx} className="grid grid-cols-5 gap-1.5">
+        <div key={rowIdx} className={`grid gap-1.5`} style={{ gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))` }}>
           {row.map((tile, colIdx) => (
             <Tile 
               key={`${rowIdx}-${colIdx}`} 

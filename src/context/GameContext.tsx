@@ -131,7 +131,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
       return;
     }
 
-    if (!isValidWord(currentGuess)) {
+    if (!isValidWord(currentGuess, settings.numberOfLetters)) {
       showToast('Not in word list');
       return;
     }
@@ -167,7 +167,7 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const startNewGame = () => {
-    const word = getRandomWord();
+    const word = getRandomWord(settings.numberOfLetters);
     setTargetWord(word);
     setGuesses([]);
     setCurrentGuess('');
