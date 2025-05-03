@@ -216,6 +216,11 @@ function App() {
               </div>
             </div>
           </div>
+
+          {/* Footer */}
+          <footer className="w-full text-center py-8 text-gray-600 dark:text-gray-400 mt-8 border-t border-gray-200 dark:border-gray-700">
+            2002-2025 Wordly
+          </footer>
         </main>
       </div>
     </GameProvider>
