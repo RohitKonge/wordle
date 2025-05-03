@@ -17,6 +17,7 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
     : 0;
 
   const maxGuessValue = Math.max(...stats.guessDistribution);
+  const totalGuesses = stats.guessDistribution.reduce((sum, num) => sum + num, 0);
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
@@ -59,23 +60,30 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
         {/* Guess Distribution */}
         <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Guess Distribution</h3>
         <div className="space-y-2">
-          {stats.guessDistribution.map((count, index) => (
-            <div key={index} className="flex items-center gap-2">
-              <span className="text-sm font-medium w-6 text-gray-900 dark:text-white">#{index + 1}</span>
-              <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden">
-                <div 
-                  className="h-8 bg-gray-300 dark:bg-gray-600 flex items-center justify-between px-3 text-sm"
-                  style={{ 
-                    width: count > 0 ? `${(count / maxGuessValue) * 100}%` : '100%',
-                    minWidth: '80px'
-                  }}
-                >
-                  <span className="text-gray-600 dark:text-gray-300">0%</span>
-                  <span className="text-gray-900 dark:text-white font-medium">0</span>
+          {stats.guessDistribution.map((count, index) => {
+            const percentage = totalGuesses > 0 ? Math.round((count / totalGuesses) * 100) : 0;
+            return (
+              <div key={index} className="flex items-center gap-2">
+                <span className="text-sm font-medium w-6 text-gray-900 dark:text-white">#{index + 1}</span>
+                <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden">
+                  <div 
+                    className="h-8 bg-primary-500 dark:bg-primary-600 flex items-center justify-between px-3 text-sm transition-all duration-500"
+                    style={{ 
+                      width: count > 0 ? `${(count / maxGuessValue) * 100}%` : '0%',
+                      minWidth: count > 0 ? '60px' : '0px'
+                    }}
+                  >
+                    {count > 0 && (
+                      <>
+                        <span className="text-gray-900 dark:text-gray-900 font-medium">{percentage}%</span>
+                        <span className="text-gray-900 dark:text-gray-900 font-medium">{count}</span>
+                      </>
+                    )}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </div>
