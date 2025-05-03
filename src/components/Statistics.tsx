@@ -67,9 +67,13 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
                 <span className="text-sm font-medium w-6 text-gray-900 dark:text-white">#{index + 1}</span>
                 <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden">
                   <div 
-                    className="h-8 bg-primary-500 dark:bg-primary-600 flex items-center justify-between px-3 text-sm transition-all duration-500"
+                    className={`h-8 flex items-center justify-between px-3 text-sm transition-all duration-500 ${
+                      totalGuesses === 0 
+                        ? 'bg-gray-200 dark:bg-gray-600 w-full' 
+                        : 'bg-primary-500 dark:bg-primary-600'
+                    }`}
                     style={{ 
-                      width: count > 0 ? `${(count / maxGuessValue) * 100}%` : '0%',
+                      width: totalGuesses === 0 ? '100%' : (count > 0 ? `${(count / maxGuessValue) * 100}%` : '0%'),
                       minWidth: count > 0 ? '60px' : '0px'
                     }}
                   >
