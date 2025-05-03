@@ -34,7 +34,7 @@ const Tile: React.FC<TileProps> = ({ letter, status, position, isRevealing = fal
 
   const animationDelay = isRevealing ? `${position * 150}ms` : '0ms';
   
-  const baseClasses = "w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-2xl font-bold rounded-xl border-2 uppercase transition-all duration-300 shadow-tile relative transform hover:scale-105";
+  const baseClasses = "w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-2xl font-bold rounded-xl border-2 uppercase transition-all duration-300 relative transform hover:scale-105";
   
   // Add animation classes if tile is revealing
   const animationClasses = isRevealing 

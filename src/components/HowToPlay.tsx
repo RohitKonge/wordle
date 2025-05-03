@@ -13,7 +13,7 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const getExampleTileClass = (status: 'correct' | 'present' | 'absent') => {
-    const baseClasses = "w-12 h-12 flex items-center justify-center text-xl font-bold rounded-xl shadow-tile transition-all transform hover:scale-105";
+    const baseClasses = "w-12 h-12 flex items-center justify-center text-xl font-bold rounded-xl transition-all transform hover:scale-105";
     
     if (settings.colorBlindMode) {
       switch (status) {
