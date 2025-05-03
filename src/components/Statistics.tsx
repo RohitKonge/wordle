@@ -33,10 +33,14 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
         </div>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-4 gap-4 mb-8">
+        <div className="grid grid-cols-5 gap-4 mb-8">
           <div className="flex flex-col items-center">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.gamesPlayed}</span>
             <span className="text-xs text-gray-600 dark:text-gray-400 text-center">Games Played</span>
+          </div>
+          <div className="flex flex-col items-center">
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.gamesWon}</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400 text-center">Games Won</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">{winPercentage}%</span>
