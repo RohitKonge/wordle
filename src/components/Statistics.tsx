@@ -39,8 +39,8 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
             <span className="text-xs text-gray-600 dark:text-gray-400 text-center">Games Played</span>
           </div>
           <div className="flex flex-col items-center">
-            <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.gamesWon}</span>
-            <span className="text-xs text-gray-600 dark:text-gray-400 text-center">Games Won</span>
+            <span className="text-3xl font-bold text-gray-900 dark:text-white">{winPercentage}%</span>
+            <span className="text-xs text-gray-600 dark:text-gray-400 text-center">Win Rate</span>
           </div>
           <div className="flex flex-col items-center">
             <span className="text-3xl font-bold text-gray-900 dark:text-white">{stats.currentStreak}</span>
@@ -52,37 +52,22 @@ const Statistics: React.FC<StatisticsProps> = ({ isOpen, onClose }) => {
           </div>
         </div>
 
-        {/* Best Try */}
-        {stats.bestTry && (
-          <div className="flex justify-center items-center gap-2 mb-6">
-            <span className="text-gray-600 dark:text-gray-400">Best try:</span>
-            <span className="text-xl font-bold text-primary-500">#{stats.bestTry}</span>
-          </div>
-        )}
-
-        {/* Win Percentage */}
-        <div className="flex justify-center items-center gap-2 mb-8">
-          <span className="text-gray-600 dark:text-gray-400">Win Rate:</span>
-          <span className="text-xl font-bold text-primary-500">{winPercentage}%</span>
-        </div>
-
         {/* Guess Distribution */}
         <h3 className="text-lg font-bold mb-4 text-gray-900 dark:text-white">Guess Distribution</h3>
         <div className="space-y-2">
           {stats.guessDistribution.map((count, index) => (
             <div key={index} className="flex items-center gap-2">
-              <span className="text-sm font-medium w-4 text-gray-900 dark:text-white">{index + 1}</span>
-              <div className="flex-1 h-6 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden">
+              <span className="text-sm font-medium w-6 text-gray-900 dark:text-white">#{index + 1}</span>
+              <div className="flex-1 bg-gray-100 dark:bg-gray-700 rounded overflow-hidden">
                 <div 
-                  className={`h-full bg-gradient transition-all duration-500 animate-slide-up ${count > 0 ? 'px-2 flex items-center justify-end' : ''}`}
+                  className="h-8 bg-gray-300 dark:bg-gray-600 flex items-center justify-between px-3 text-sm"
                   style={{ 
-                    width: maxGuessValue > 0 ? `${(count / maxGuessValue) * 100}%` : '0%',
-                    minWidth: count > 0 ? '24px' : '0'
+                    width: count > 0 ? `${(count / maxGuessValue) * 100}%` : '100%',
+                    minWidth: '80px'
                   }}
                 >
-                  {count > 0 && (
-                    <span className="text-xs font-bold text-white">{count}</span>
-                  )}
+                  <span className="text-gray-600 dark:text-gray-300">0%</span>
+                  <span className="text-gray-900 dark:text-white font-medium">0</span>
                 </div>
               </div>
             </div>
