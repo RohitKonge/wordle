@@ -29,6 +29,17 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
     }
   };
 
+  const ExampleTile = ({ letter, status, repeatCount = 0 }: { letter: string, status: 'correct' | 'present' | 'absent', repeatCount?: number }) => (
+    <div className={`${getExampleTileClass(status)} relative`}>
+      {repeatCount > 1 && settings.letterHints && (
+        <div className="absolute top-1 right-1.5 text-xs font-bold">
+          {repeatCount}
+        </div>
+      )}
+      {letter}
+    </div>
+  );
+
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
       <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 animate-slide-up relative">
@@ -46,14 +57,24 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
           changes to show how close you are.
         </p>
 
+        <p className="mb-4 text-gray-900 dark:text-gray-100">When Letter Hints are enabled, a number appears in the corner of letters that occur multiple times in the word:</p>
+
+        <div className="grid grid-cols-5 gap-1 mb-4">
+          <ExampleTile letter="B" status="absent" />
+          <ExampleTile letter="O" status="present" repeatCount={2} />
+          <ExampleTile letter="O" status="correct" repeatCount={2} />
+          <ExampleTile letter="K" status="absent" />
+          <ExampleTile letter="S" status="absent" />
+        </div>
+
         <p className="mb-4 text-gray-900 dark:text-gray-100">To start the game, just enter any word, for example:</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className={getExampleTileClass('absent')}>T</div>
-          <div className={getExampleTileClass('present')}>A</div>
-          <div className={getExampleTileClass('absent')}>B</div>
-          <div className={getExampleTileClass('present')}>L</div>
-          <div className={getExampleTileClass('correct')}>E</div>
+          <ExampleTile letter="T" status="absent" />
+          <ExampleTile letter="A" status="present" />
+          <ExampleTile letter="B" status="absent" />
+          <ExampleTile letter="L" status="present" />
+          <ExampleTile letter="E" status="correct" />
         </div>
 
         <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
@@ -71,21 +92,21 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
         <p className="mb-4 text-gray-900 dark:text-gray-100">Another try to find matching letters in the target word.</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className={getExampleTileClass('correct')}>F</div>
-          <div className={getExampleTileClass('correct')}>L</div>
-          <div className={getExampleTileClass('correct')}>A</div>
-          <div className={getExampleTileClass('absent')}>S</div>
-          <div className={getExampleTileClass('absent')}>H</div>
+          <ExampleTile letter="F" status="correct" />
+          <ExampleTile letter="L" status="correct" />
+          <ExampleTile letter="A" status="correct" />
+          <ExampleTile letter="S" status="absent" />
+          <ExampleTile letter="H" status="absent" />
         </div>
 
         <p className="text-center mb-4 text-gray-900 dark:text-gray-100">So close!</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className={getExampleTileClass('correct')}>F</div>
-          <div className={getExampleTileClass('correct')}>L</div>
-          <div className={getExampleTileClass('correct')}>A</div>
-          <div className={getExampleTileClass('correct')}>M</div>
-          <div className={getExampleTileClass('correct')}>E</div>
+          <ExampleTile letter="F" status="correct" />
+          <ExampleTile letter="L" status="correct" />
+          <ExampleTile letter="A" status="correct" />
+          <ExampleTile letter="M" status="correct" />
+          <ExampleTile letter="E" status="correct" />
         </div>
 
         <p className="text-center font-bold text-gray-900 dark:text-gray-100">Got it! 🎉</p>

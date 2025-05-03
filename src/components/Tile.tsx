@@ -10,7 +10,12 @@ interface TileProps {
 }
 
 const Tile: React.FC<TileProps> = ({ letter, status, position, isRevealing = false }) => {
-  const { settings } = useGame();
+  const { settings, targetWord } = useGame();
+
+  const getLetterCount = (letter: string): number => {
+    if (!settings.letterHints || !letter) return 0;
+    return targetWord.split('').filter(l => l === letter).length;
+  };
 
   // Map status to tailwind classes with color blind mode support
   const statusClasses = {
@@ -29,18 +34,25 @@ const Tile: React.FC<TileProps> = ({ letter, status, position, isRevealing = fal
 
   const animationDelay = isRevealing ? `${position * 150}ms` : '0ms';
   
-  const baseClasses = "w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-2xl font-bold rounded border-2 uppercase transition-colors";
+  const baseClasses = "w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center text-2xl font-bold rounded border-2 uppercase transition-colors relative";
   
   // Add animation classes if tile is revealing
   const animationClasses = isRevealing 
     ? "animate-flip-in" 
     : "";
 
+  const letterCount = getLetterCount(letter);
+
   return (
     <div
       className={`${baseClasses} ${statusClasses[status as keyof typeof statusClasses]} ${animationClasses}`}
       style={{ animationDelay }}
     >
+      {letterCount > 1 && (
+        <div className="absolute top-1 right-1.5 text-xs font-bold">
+          {letterCount}
+        </div>
+      )}
       {letter}
     </div>
   );
