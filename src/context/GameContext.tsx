@@ -10,7 +10,6 @@ interface GameSettings {
   darkMode: boolean;
   colorBlindMode: boolean;
   letterHints: boolean;
-  confettiAnimation: boolean;
   swapButtons: boolean;
 }
 
@@ -36,7 +35,6 @@ const defaultSettings: GameSettings = {
   darkMode: false,
   colorBlindMode: false,
   letterHints: false,
-  confettiAnimation: true,
   swapButtons: false
 };
 

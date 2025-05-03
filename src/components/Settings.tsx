@@ -120,24 +120,6 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
 
-          {/* Confetti Animation */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">Confetti Animation</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Confetti animation when the game is won</p>
-            </div>
-            <button
-              onClick={() => updateSetting('confettiAnimation', !settings.confettiAnimation)}
-              className={`w-12 h-6 rounded-full transition-colors ${
-                settings.confettiAnimation ? 'bg-green-500' : 'bg-gray-200 dark:bg-gray-700'
-              }`}
-            >
-              <div className={`w-5 h-5 bg-white rounded-full transform transition-transform ${
-                settings.confettiAnimation ? 'translate-x-6' : 'translate-x-1'
-              }`} />
-            </button>
-          </div>
-
           {/* Swap Buttons */}
           <div className="flex items-center justify-between">
             <div>
