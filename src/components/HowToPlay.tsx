@@ -1,5 +1,6 @@
 import React from 'react';
 import { X } from 'lucide-react';
+import { useGame } from '../context/GameContext';
 
 interface HowToPlayProps {
   isOpen: boolean;
@@ -7,7 +8,26 @@ interface HowToPlayProps {
 }
 
 const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
+  const { settings } = useGame();
+  
   if (!isOpen) return null;
+
+  const getExampleTileClass = (status: 'correct' | 'present' | 'absent') => {
+    const baseClasses = "w-12 h-12 flex items-center justify-center text-2xl font-bold rounded text-white";
+    if (settings.colorBlindMode) {
+      switch (status) {
+        case 'correct': return `${baseClasses} bg-orange-600`;
+        case 'present': return `${baseClasses} bg-blue-500`;
+        case 'absent': return `${baseClasses} bg-gray-700`;
+      }
+    } else {
+      switch (status) {
+        case 'correct': return `${baseClasses} bg-green-500`;
+        case 'present': return `${baseClasses} bg-yellow-500`;
+        case 'absent': return `${baseClasses} bg-gray-400`;
+      }
+    }
+  };
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
@@ -29,11 +49,11 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
         <p className="mb-4 text-gray-900 dark:text-gray-100">To start the game, just enter any word, for example:</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className="bg-gray-400 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">T</div>
-          <div className="bg-yellow-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">A</div>
-          <div className="bg-gray-400 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">B</div>
-          <div className="bg-yellow-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">L</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">E</div>
+          <div className={getExampleTileClass('absent')}>T</div>
+          <div className={getExampleTileClass('present')}>A</div>
+          <div className={getExampleTileClass('absent')}>B</div>
+          <div className={getExampleTileClass('present')}>L</div>
+          <div className={getExampleTileClass('correct')}>E</div>
         </div>
 
         <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
@@ -51,21 +71,21 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
         <p className="mb-4 text-gray-900 dark:text-gray-100">Another try to find matching letters in the target word.</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">F</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">L</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">A</div>
-          <div className="bg-gray-400 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">S</div>
-          <div className="bg-gray-400 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">H</div>
+          <div className={getExampleTileClass('correct')}>F</div>
+          <div className={getExampleTileClass('correct')}>L</div>
+          <div className={getExampleTileClass('correct')}>A</div>
+          <div className={getExampleTileClass('absent')}>S</div>
+          <div className={getExampleTileClass('absent')}>H</div>
         </div>
 
         <p className="text-center mb-4 text-gray-900 dark:text-gray-100">So close!</p>
 
         <div className="grid grid-cols-5 gap-1 mb-4">
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">F</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">L</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">A</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">M</div>
-          <div className="bg-green-500 text-white w-12 h-12 flex items-center justify-center text-2xl font-bold rounded">E</div>
+          <div className={getExampleTileClass('correct')}>F</div>
+          <div className={getExampleTileClass('correct')}>L</div>
+          <div className={getExampleTileClass('correct')}>A</div>
+          <div className={getExampleTileClass('correct')}>M</div>
+          <div className={getExampleTileClass('correct')}>E</div>
         </div>
 
         <p className="text-center font-bold text-gray-900 dark:text-gray-100">Got it! 🎉</p>

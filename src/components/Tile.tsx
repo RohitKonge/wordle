@@ -1,5 +1,6 @@
 import React from 'react';
 import { TileStatus } from '../context/GameContext';
+import { useGame } from '../context/GameContext';
 
 interface TileProps {
   letter: string;
@@ -9,13 +10,21 @@ interface TileProps {
 }
 
 const Tile: React.FC<TileProps> = ({ letter, status, position, isRevealing = false }) => {
-  // Map status to tailwind classes
+  const { settings } = useGame();
+
+  // Map status to tailwind classes with color blind mode support
   const statusClasses = {
     empty: 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100',
     filled: 'border-gray-400 dark:border-gray-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100',
-    correct: 'border-green-500 bg-green-500 text-white',
-    present: 'border-yellow-500 bg-yellow-500 text-white',
-    absent: 'border-gray-500 bg-gray-500 text-white',
+    correct: settings.colorBlindMode 
+      ? 'border-orange-600 bg-orange-600 text-white'
+      : 'border-green-500 bg-green-500 text-white',
+    present: settings.colorBlindMode
+      ? 'border-blue-500 bg-blue-500 text-white'
+      : 'border-yellow-500 bg-yellow-500 text-white',
+    absent: settings.colorBlindMode
+      ? 'border-gray-700 bg-gray-700 text-white'
+      : 'border-gray-500 bg-gray-500 text-white',
   };
 
   const animationDelay = isRevealing ? `${position * 150}ms` : '0ms';

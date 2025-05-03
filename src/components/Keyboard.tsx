@@ -41,9 +41,15 @@ const Keyboard: React.FC = () => {
     const statusClasses: Record<TileStatus, string> = {
       empty: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
       filled: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
-      correct: "bg-green-500 text-white",
-      present: "bg-yellow-500 text-white",
-      absent: "bg-gray-500 text-white"
+      correct: settings.colorBlindMode
+        ? "bg-orange-600 text-white"
+        : "bg-green-500 text-white",
+      present: settings.colorBlindMode
+        ? "bg-blue-500 text-white"
+        : "bg-yellow-500 text-white",
+      absent: settings.colorBlindMode
+        ? "bg-gray-700 text-white"
+        : "bg-gray-500 text-white"
     };
     
     return `${baseClasses} ${widthClasses} ${statusClasses[status]}`;
