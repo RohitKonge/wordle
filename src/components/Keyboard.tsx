@@ -2,13 +2,28 @@ import React from 'react';
 import { useGame, TileStatus } from '../context/GameContext';
 
 const Keyboard: React.FC = () => {
-  const { addLetter, removeLetter, submitGuess, keyboardStatus } = useGame();
+  const { addLetter, removeLetter, submitGuess, keyboardStatus, settings } = useGame();
   
-  const rows = [
-    ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
-    ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
-    ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
-  ];
+  const createKeyboardRows = () => {
+    const defaultRows = [
+      ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
+      ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L'],
+      ['ENTER', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'BACKSPACE']
+    ];
+
+    if (settings.swapButtons) {
+      // Swap ENTER and BACKSPACE in the last row
+      const lastRow = [...defaultRows[2]];
+      const enterIndex = lastRow.indexOf('ENTER');
+      const backspaceIndex = lastRow.indexOf('BACKSPACE');
+      [lastRow[enterIndex], lastRow[backspaceIndex]] = [lastRow[backspaceIndex], lastRow[enterIndex]];
+      return [defaultRows[0], defaultRows[1], lastRow];
+    }
+
+    return defaultRows;
+  };
+
+  const rows = createKeyboardRows();
 
   const getKeyStatus = (key: string): TileStatus => {
     if (key === 'ENTER' || key === 'BACKSPACE') return 'empty';
@@ -23,8 +38,9 @@ const Keyboard: React.FC = () => {
       ? "w-16 sm:w-20" 
       : "w-8 sm:w-10";
     
-    const statusClasses = {
+    const statusClasses: Record<TileStatus, string> = {
       empty: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
+      filled: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
       correct: "bg-green-500 text-white",
       present: "bg-yellow-500 text-white",
       absent: "bg-gray-500 text-white"
