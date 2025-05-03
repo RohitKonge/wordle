@@ -12,7 +12,6 @@ const Keyboard: React.FC = () => {
     ];
 
     if (settings.swapButtons) {
-      // Swap ENTER and BACKSPACE in the last row
       const lastRow = [...defaultRows[2]];
       const enterIndex = lastRow.indexOf('ENTER');
       const backspaceIndex = lastRow.indexOf('BACKSPACE');
@@ -32,24 +31,28 @@ const Keyboard: React.FC = () => {
 
   const getKeyClasses = (key: string) => {
     const status = getKeyStatus(key);
-    const baseClasses = "flex items-center justify-center rounded font-semibold text-sm sm:text-base py-4 transition-colors";
+    const isActionKey = key === 'ENTER' || key === 'BACKSPACE';
     
-    const widthClasses = key === 'ENTER' || key === 'BACKSPACE' 
-      ? "w-16 sm:w-20" 
+    const baseClasses = "flex items-center justify-center rounded-lg font-semibold text-sm sm:text-base py-4 shadow-keyboard transition-all duration-200 transform hover:scale-105 active:scale-95";
+    
+    const widthClasses = isActionKey 
+      ? "w-16 sm:w-20 font-bold text-xs uppercase tracking-wider" 
       : "w-8 sm:w-10";
     
     const statusClasses: Record<TileStatus, string> = {
-      empty: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
+      empty: isActionKey
+        ? "bg-primary-500 text-white hover:bg-primary-600"
+        : "bg-white hover:bg-gray-100 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
       filled: "bg-gray-200 hover:bg-gray-300 text-gray-800 dark:bg-gray-700 dark:hover:bg-gray-600 dark:text-gray-100",
       correct: settings.colorBlindMode
-        ? "bg-orange-600 text-white"
-        : "bg-green-500 text-white",
+        ? "bg-orange-600 hover:bg-orange-700 text-white"
+        : "bg-green-500 hover:bg-green-600 text-white",
       present: settings.colorBlindMode
-        ? "bg-blue-500 text-white"
-        : "bg-yellow-500 text-white",
+        ? "bg-blue-500 hover:bg-blue-600 text-white"
+        : "bg-yellow-500 hover:bg-yellow-600 text-white",
       absent: settings.colorBlindMode
-        ? "bg-gray-700 text-white"
-        : "bg-gray-500 text-white"
+        ? "bg-gray-700 hover:bg-gray-800 text-white"
+        : "bg-gray-500 hover:bg-gray-600 text-white"
     };
     
     return `${baseClasses} ${widthClasses} ${statusClasses[status]}`;
@@ -66,9 +69,9 @@ const Keyboard: React.FC = () => {
   };
 
   return (
-    <div className="w-full max-w-md">
+    <div className="w-full max-w-md p-4">
       {rows.map((row, rowIndex) => (
-        <div key={rowIndex} className="flex justify-center mb-2 gap-1">
+        <div key={rowIndex} className="flex justify-center mb-2 gap-1.5">
           {row.map((key) => (
             <button
               key={key}

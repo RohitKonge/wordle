@@ -13,26 +13,27 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   const getExampleTileClass = (status: 'correct' | 'present' | 'absent') => {
-    const baseClasses = "w-12 h-12 flex items-center justify-center text-2xl font-bold rounded text-white";
+    const baseClasses = "w-12 h-12 flex items-center justify-center text-xl font-bold rounded-xl shadow-tile transition-all transform hover:scale-105";
+    
     if (settings.colorBlindMode) {
       switch (status) {
-        case 'correct': return `${baseClasses} bg-orange-600`;
-        case 'present': return `${baseClasses} bg-blue-500`;
-        case 'absent': return `${baseClasses} bg-gray-700`;
+        case 'correct': return `${baseClasses} bg-gradient-to-br from-orange-500 to-orange-600 text-white`;
+        case 'present': return `${baseClasses} bg-gradient-to-br from-blue-500 to-blue-600 text-white`;
+        case 'absent': return `${baseClasses} bg-gradient-to-br from-gray-600 to-gray-700 text-white`;
       }
     } else {
       switch (status) {
-        case 'correct': return `${baseClasses} bg-green-500`;
-        case 'present': return `${baseClasses} bg-yellow-500`;
-        case 'absent': return `${baseClasses} bg-gray-400`;
+        case 'correct': return `${baseClasses} bg-gradient-to-br from-green-500 to-green-600 text-white`;
+        case 'present': return `${baseClasses} bg-gradient-to-br from-yellow-500 to-yellow-600 text-white`;
+        case 'absent': return `${baseClasses} bg-gradient-to-br from-gray-400 to-gray-500 text-white`;
       }
     }
   };
 
   const ExampleTile = ({ letter, status, repeatCount = 0 }: { letter: string, status: 'correct' | 'present' | 'absent', repeatCount?: number }) => (
-    <div className={`${getExampleTileClass(status)} relative`}>
+    <div className={`${getExampleTileClass(status)} relative animate-pop-in`}>
       {repeatCount > 1 && settings.letterHints && (
-        <div className="absolute top-1 right-1.5 text-xs font-bold">
+        <div className="absolute -top-1 -right-1 w-5 h-5 flex items-center justify-center bg-primary-500 text-white text-xs font-bold rounded-full">
           {repeatCount}
         </div>
       )}
@@ -41,75 +42,72 @@ const HowToPlay: React.FC<HowToPlayProps> = ({ isOpen, onClose }) => {
   );
 
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-      <div className="bg-white dark:bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 animate-slide-up relative">
-        <button
-          onClick={onClose}
-          className="absolute top-4 right-4 p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full text-gray-900 dark:text-gray-100"
-        >
-          <X size={20} />
-        </button>
-        
-        <h2 className="text-2xl font-bold mb-4 text-center text-gray-900 dark:text-white">How to play</h2>
-        
-        <p className="text-center mb-6 text-gray-900 dark:text-gray-100">
-          You have to guess the hidden word in 6 tries and the color of the letters
-          changes to show how close you are.
-        </p>
-
-        <p className="mb-4 text-gray-900 dark:text-gray-100">When Letter Hints are enabled, a number appears in the corner of letters that occur multiple times in the word:</p>
-
-        <div className="grid grid-cols-5 gap-1 mb-4">
-          <ExampleTile letter="B" status="absent" />
-          <ExampleTile letter="O" status="present" repeatCount={2} />
-          <ExampleTile letter="O" status="correct" repeatCount={2} />
-          <ExampleTile letter="K" status="absent" />
-          <ExampleTile letter="S" status="absent" />
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+      <div className="bg-white dark:bg-gray-800 rounded-2xl p-8 max-w-lg w-full mx-4 animate-slide-up shadow-xl">
+        <div className="relative mb-6">
+          <h2 className="text-3xl font-bold text-center text-gray-900 dark:text-white">How to Play</h2>
+          <button
+            onClick={onClose}
+            className="absolute right-0 top-0 p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full text-gray-500 dark:text-gray-400 transition-colors"
+            aria-label="Close how to play"
+          >
+            <X size={24} />
+          </button>
         </div>
 
-        <p className="mb-4 text-gray-900 dark:text-gray-100">To start the game, just enter any word, for example:</p>
+        <div className="space-y-8">
+          <p className="text-center text-gray-600 dark:text-gray-300">
+            Guess the word in 6 tries. After each guess, the tiles will show how close your guess was.
+          </p>
 
-        <div className="grid grid-cols-5 gap-1 mb-4">
-          <ExampleTile letter="T" status="absent" />
-          <ExampleTile letter="A" status="present" />
-          <ExampleTile letter="B" status="absent" />
-          <ExampleTile letter="L" status="present" />
-          <ExampleTile letter="E" status="correct" />
-        </div>
+          <div className="space-y-6">
+            <div>
+              <div className="flex justify-center gap-1 mb-4">
+                <ExampleTile letter="W" status="correct" />
+                <ExampleTile letter="O" status="present" repeatCount={2} />
+                <ExampleTile letter="R" status="absent" />
+                <ExampleTile letter="D" status="present" />
+                <ExampleTile letter="S" status="absent" />
+              </div>
+              <p className="text-sm text-center text-gray-600 dark:text-gray-300">
+                When Letter Hints are enabled, a number appears for repeated letters
+              </p>
+            </div>
 
-        <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg mb-6">
-          <div className="flex items-center gap-2 mb-2 text-gray-900 dark:text-gray-100">
-            <span className="font-mono">T, B</span> aren't in the target word at all.
+            <div className="space-y-4">
+              <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                <div className="flex items-center gap-3 mb-2">
+                  <ExampleTile letter="W" status="correct" />
+                  <p className="text-gray-900 dark:text-white">
+                    <span className="font-semibold">W</span> is in the word and in the correct spot
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                <div className="flex items-center gap-3 mb-2">
+                  <ExampleTile letter="O" status="present" />
+                  <p className="text-gray-900 dark:text-white">
+                    <span className="font-semibold">O</span> is in the word but in the wrong spot
+                  </p>
+                </div>
+              </div>
+
+              <div className="p-4 bg-gray-50 dark:bg-gray-700/50 rounded-xl">
+                <div className="flex items-center gap-3">
+                  <ExampleTile letter="R" status="absent" />
+                  <p className="text-gray-900 dark:text-white">
+                    <span className="font-semibold">R</span> is not in the word
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="flex items-center gap-2 mb-2 text-gray-900 dark:text-gray-100">
-            <span className="font-mono">A, L</span> is in the word but in the wrong spot.
-          </div>
-          <div className="flex items-center gap-2 text-gray-900 dark:text-gray-100">
-            <span className="font-mono">E</span> is in the word and in the correct spot.
-          </div>
+
+          <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+            A new word will be available each time you play!
+          </p>
         </div>
-
-        <p className="mb-4 text-gray-900 dark:text-gray-100">Another try to find matching letters in the target word.</p>
-
-        <div className="grid grid-cols-5 gap-1 mb-4">
-          <ExampleTile letter="F" status="correct" />
-          <ExampleTile letter="L" status="correct" />
-          <ExampleTile letter="A" status="correct" />
-          <ExampleTile letter="S" status="absent" />
-          <ExampleTile letter="H" status="absent" />
-        </div>
-
-        <p className="text-center mb-4 text-gray-900 dark:text-gray-100">So close!</p>
-
-        <div className="grid grid-cols-5 gap-1 mb-4">
-          <ExampleTile letter="F" status="correct" />
-          <ExampleTile letter="L" status="correct" />
-          <ExampleTile letter="A" status="correct" />
-          <ExampleTile letter="M" status="correct" />
-          <ExampleTile letter="E" status="correct" />
-        </div>
-
-        <p className="text-center font-bold text-gray-900 dark:text-gray-100">Got it! 🎉</p>
       </div>
     </div>
   );
