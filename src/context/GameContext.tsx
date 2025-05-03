@@ -7,7 +7,6 @@ export type TileStatus = 'empty' | 'filled' | 'correct' | 'present' | 'absent';
 interface GameSettings {
   numberOfLetters: number;
   hardMode: boolean;
-  dailyMode: boolean;
   darkMode: boolean;
   colorBlindMode: boolean;
   letterHints: boolean;
@@ -34,7 +33,6 @@ interface GameContextType {
 const defaultSettings: GameSettings = {
   numberOfLetters: 5,
   hardMode: false,
-  dailyMode: false,
   darkMode: false,
   colorBlindMode: false,
   letterHints: false,

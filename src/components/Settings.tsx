@@ -66,25 +66,6 @@ const Settings: React.FC<SettingsProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
 
-          {/* Daily Mode */}
-          <div className="flex items-center justify-between">
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white">Daily Mode</h3>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Guess a chain of words from 4 to 7 letters every 24 hours</p>
-              <p className="text-gray-600 dark:text-gray-400 text-sm">Next word update in 09:57:50</p>
-            </div>
-            <button
-              onClick={() => updateSetting('dailyMode', !settings.dailyMode)}
-              className={`w-12 h-6 rounded-full transition-colors ${
-                settings.dailyMode ? 'bg-green-500' : 'bg-gray-200 dark:bg-gray-700'
-              }`}
-            >
-              <div className={`w-5 h-5 bg-white rounded-full transform transition-transform ${
-                settings.dailyMode ? 'translate-x-6' : 'translate-x-1'
-              }`} />
-            </button>
-          </div>
-
           {/* Dark Mode */}
           <div className="flex items-center justify-between">
             <div>
