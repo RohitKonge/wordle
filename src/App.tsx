@@ -78,6 +78,56 @@ const GameContent = () => (
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="w-full max-w-2xl mx-auto mb-12 px-4" aria-labelledby="faq">
+        <h2 id="faq" className="text-3xl font-bold text-center text-gray-900 dark:text-white mb-8 relative">
+          Frequently Asked Questions
+          <span className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-primary-500 rounded-full"></span>
+        </h2>
+        <div className="space-y-6 mt-4">
+          <div>
+            <h3 className="text-xl font-semibold">What is Wordle?</h3>
+            <p>Wordle is a free online word puzzle game where you guess a hidden five-letter word in six tries or less.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">How do I play Wordle?</h3>
+            <p>Enter a valid five-letter word and submit your guess. The colors of the tiles will indicate how close your guess is to the correct word.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Is Wordle free to play?</h3>
+            <p>Yes, Wordle is completely free to play with no registration required.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Can I play Wordle on my phone?</h3>
+            <p>Absolutely! Wordle is optimized for mobile devices and works seamlessly on smartphones and tablets.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">How often is there a new Wordle puzzle?</h3>
+            <p>A new Wordle puzzle is available every day.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Can I share my Wordle results?</h3>
+            <p>Yes! After solving the puzzle, you can share your results with friends on social media.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Are there any tips for solving Wordle?</h3>
+            <p>Start with common five-letter words, use the color hints, and try to eliminate unlikely letters early.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Is my data safe on Wordle?</h3>
+            <p>We take your privacy seriously. Please read our <a href="/privacy" className="text-primary-500 underline">Privacy Policy</a> for details.</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">Can I play previous Wordle puzzles?</h3>
+            <p>Currently, only the daily puzzle is available. Stay tuned for updates!</p>
+          </div>
+          <div>
+            <h3 className="text-xl font-semibold">How can I contact the Wordle team?</h3>
+            <p>Visit our <a href="/contact" className="text-primary-500 underline">Contact</a> page to reach out to us with any questions or feedback.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
       <footer className="w-full text-center py-8 text-gray-600 dark:text-gray-400 border-t border-gray-200 dark:border-gray-700 bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm">
         <div className="max-w-2xl mx-auto px-4">
