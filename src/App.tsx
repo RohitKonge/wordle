@@ -8,6 +8,8 @@ import GameOver from './components/GameOver';
 import PrivacyPolicy from './components/PrivacyPolicy';
 import TermsOfService from './components/TermsOfService';
 import Contact from './components/Contact';
+import AboutUs from './components/AboutUs';
+import FAQ from './components/FAQ';
 
 const GameContent = () => (
   <>
@@ -81,10 +83,12 @@ const GameContent = () => (
         <div className="max-w-2xl mx-auto px-4">
           <p className="mb-2">© 2002-2025 Wordle.work - Free Online Word Puzzle Game</p>
           <nav aria-label="Footer Navigation">
-            <ul className="flex justify-center gap-4 text-sm">
+            <ul className="flex flex-wrap justify-center gap-4 text-sm mb-4">
+              <li><Link to="/about" className="hover:text-primary-500">About</Link></li>
+              <li><Link to="/faq" className="hover:text-primary-500">FAQ</Link></li>
               <li><Link to="/privacy" className="hover:text-primary-500">Privacy Policy</Link></li>
               <li><Link to="/terms" className="hover:text-primary-500">Terms of Service</Link></li>
-              <li><Link to="/contact" className="hover:text-primary-500">Contact Us</Link></li>
+              <li><Link to="/contact" className="hover:text-primary-500">Contact</Link></li>
             </ul>
           </nav>
           <p className="text-sm mt-4">
@@ -114,6 +118,8 @@ function App() {
 
           <Routes>
             <Route path="/" element={<GameContent />} />
+            <Route path="/about" element={<AboutUs />} />
+            <Route path="/faq" element={<FAQ />} />
             <Route path="/privacy" element={<PrivacyPolicy />} />
             <Route path="/terms" element={<TermsOfService />} />
             <Route path="/contact" element={<Contact />} />

@@ -4,6 +4,7 @@ import { useGame } from '../context/GameContext';
 import HowToPlay from './HowToPlay';
 import Settings from './Settings';
 import Statistics from './Statistics';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
   const { startNewGame, giveUp, gameStatus } = useGame();
@@ -16,8 +17,15 @@ const Header: React.FC = () => {
       <header className="w-full border-b border-gray-200 dark:border-gray-700 py-4 px-4 bg-white dark:bg-gray-800 shadow-md relative z-10 transition-colors">
         <div className="flex items-center justify-between max-w-lg mx-auto">
           <h1 className="text-3xl font-bold tracking-wide text-gray-900 dark:text-white animate-pop-in">
-            WORDLE
+            <Link to="/">WORDLE</Link>
           </h1>
+          {/* <nav className="hidden md:flex gap-4 items-center text-base font-medium">
+            <Link to="/about" className="hover:text-primary-500">About</Link>
+            <Link to="/faq" className="hover:text-primary-500">FAQ</Link>
+            <Link to="/privacy" className="hover:text-primary-500">Privacy</Link>
+            <Link to="/terms" className="hover:text-primary-500">Terms</Link>
+            <Link to="/contact" className="hover:text-primary-500">Contact</Link>
+          </nav> */}
           <div className="flex gap-2">
             <button
               onClick={() => setShowStats(true)}

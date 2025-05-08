@@ -28,6 +28,7 @@ const Contact: React.FC = () => {
         </Link>
 
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Contact Us</h1>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">We’d love to hear from you! For support, feedback, or partnership opportunities, please reach out using the form below or email us at <a href="mailto:support@wordle.work" className="text-primary-500 underline">support@wordle.work</a>. We aim to respond within 24-48 hours.</p>
         
         <div className="space-y-6 text-gray-600 dark:text-gray-300">
           <section className="mb-8">

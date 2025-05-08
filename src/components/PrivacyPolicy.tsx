@@ -13,7 +13,7 @@ const PrivacyPolicy: React.FC = () => {
         </Link>
 
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">Privacy Policy</h1>
-        
+        <p className="text-gray-600 dark:text-gray-300 mb-4">Last updated: May 8, 2025</p>
         <div className="space-y-6 text-gray-600 dark:text-gray-300">
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Introduction</h2>
@@ -25,82 +25,54 @@ const PrivacyPolicy: React.FC = () => {
 
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Information We Collect</h2>
-            <p className="mb-4">We collect the following types of information:</p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Game statistics and progress (stored locally on your device)</li>
-              <li>Device information (browser type, operating system)</li>
-              <li>Game preferences and settings</li>
+              <li>Cookies to enhance your experience and remember your preferences</li>
+              <li>Anonymous analytics data about how you use our site</li>
+              <li>Advertising cookies for relevant ads</li>
             </ul>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">How We Use Your Information</h2>
-            <p className="mb-4">Your information is used to:</p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Save your game progress and statistics</li>
-              <li>Improve game performance and user experience</li>
-              <li>Maintain and optimize the website</li>
+              <li>To provide and improve our services</li>
+              <li>To analyze usage and trends</li>
+              <li>To display relevant advertisements</li>
             </ul>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Data Storage</h2>
-            <p>
-              All game progress and settings are stored locally on your device using browser local storage.
-              We do not store any personal information on our servers.
-            </p>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Data Sharing</h2>
+            <p>We do not sell or share your personal information with third parties except as necessary for analytics and advertising.</p>
           </section>
 
           <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Cookies</h2>
-            <p>
-              We use essential cookies to maintain your game settings and preferences. These cookies are
-              necessary for the proper functioning of the game and do not track personal information.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Third-Party Services</h2>
-            <p>
-              We may use third-party services for analytics and performance monitoring. These services
-              collect anonymous usage data to help us improve the game experience.
-            </p>
-          </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Your Rights</h2>
-            <p className="mb-4">You have the right to:</p>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Your Choices</h2>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Clear your local game data at any time</li>
-              <li>Opt-out of non-essential cookies</li>
-              <li>Request information about your data</li>
+              <li>You can disable cookies in your browser settings</li>
+              <li>You may opt out of personalized ads via your browser or ad settings</li>
             </ul>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Security</h2>
+            <p>We implement reasonable security measures to protect your data.</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Children’s Privacy</h2>
+            <p>Wordle is not intended for children under 13. We do not knowingly collect personal information from children.</p>
+          </section>
+
+          <section>
+            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Changes to This Policy</h2>
+            <p>We may update this policy from time to time. Please review it regularly.</p>
           </section>
 
           <section>
             <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Contact Us</h2>
-            <p>
-              If you have any questions about our Privacy Policy, please{" "}
-              <Link to="/contact" className="text-primary-500 hover:text-primary-600">
-                contact us
-              </Link>
-              .
-            </p>
+            <p>If you have questions about this Privacy Policy, please <Link to="/contact" className="text-primary-500 hover:text-primary-600">contact us</Link>.</p>
           </section>
-
-          <section>
-            <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">Updates to This Policy</h2>
-            <p>
-              We may update this Privacy Policy from time to time. The latest version will always be
-              posted on this page with the effective date.
-            </p>
-          </section>
-
-          <footer className="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-sm text-gray-500 dark:text-gray-400">
-              Last updated: May 3, 2025
-            </p>
-          </footer>
         </div>
       </div>
     </div>
